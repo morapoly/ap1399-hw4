@@ -1,4 +1,5 @@
-
+#ifndef ER_H
+#define ER_H
 
 class Course;
 class Prof;
@@ -19,3 +20,5 @@ class ER
     int weight;           // weight of course
     int absences{};       // number of student's absences
 };
+
+#endif

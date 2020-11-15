@@ -1,6 +1,9 @@
-//#include <string>
+#ifndef PERSON_H
+#define PERSON_H
 
-class course;
+#include <string>
+
+class Course;
 
 class Person
 {
@@ -14,3 +17,5 @@ class Person
     Course** courses; // a set of pointers to person's courses
     int n_classes{};  // number of person's courses
 };
+
+#endif

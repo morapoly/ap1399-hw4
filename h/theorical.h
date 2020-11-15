@@ -1,4 +1,8 @@
-class ER;
+#ifndef THEORICAL_H
+#define THEORICAL_H
+
+#include "er.h"
+
 class Course;
 class Student;
 class Prof;
@@ -15,3 +19,5 @@ class Theorical : public ER
     float final_exam;
     float homeWorks;
 };
+
+#endif

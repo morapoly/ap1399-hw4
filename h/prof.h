@@ -1,4 +1,8 @@
-class Person;
+#ifndef PROF_H
+#define PROF_H
+
+#include "person.h"
+#include <string>
 
 class Prof : public Person
 {
@@ -8,3 +12,5 @@ class Prof : public Person
     ~Prof();
     float get_mean();  // Each of professor's courses has mean. This function returns mean of those means.
 };
+
+#endif

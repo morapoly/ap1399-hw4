@@ -1,4 +1,8 @@
-class ER;
+#ifndef LAB_H
+#define LAB_H
+
+#include "er.h"
+
 class Course;
 class Student;
 class Prof;
@@ -15,3 +19,5 @@ class Lab : public ER
     float activities;   // score of student's activities in class
     float final_exam;
 };
+
+#endif

@@ -2,8 +2,8 @@
 #define STUDENT_H
 
 #include <string>
+#include "person.h"
 
-class Person;
 class Course;
 class Prof;
 class Theorical;
