@@ -1,1 +1,6 @@
 #include "student.h"
+#include "course.h"
+#include "theorical.h"
+#include "lab.h"
+#include "person.h"
+#include "prof.h"

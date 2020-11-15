@@ -1,1 +1,5 @@
 #include "theorical.h"
+#include "course.h"
+#include "er.h"
+#include "student.h"
+#include "prof.h"

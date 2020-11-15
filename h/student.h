@@ -5,7 +5,6 @@
 
 class Person;
 class Course;
-class Student;
 class Prof;
 class Theorical;
 class Lab;

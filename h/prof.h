@@ -1,5 +1,4 @@
 class Person;
-class Prof;
 
 class Prof : public Person
 {

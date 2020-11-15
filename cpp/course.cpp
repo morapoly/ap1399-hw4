@@ -1,3 +1,7 @@
 #include "course.h"
-
-//Test cm3
+#include "er.h"
+#include "theorical.h"
+#include "lab.h"
+#include "student.h"
+#include "person.h"
+#include "prof.h"
