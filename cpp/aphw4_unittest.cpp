@@ -166,7 +166,6 @@ TEST(APHW4Test,get_mean6)
   }
   Person* p1{&prof1};
   EXPECT_EQ(15,p1->get_mean());
-  std::cout << "Test " << std::endl;
   p1 = &s1;
   EXPECT_EQ(18,p1->get_mean());
 }

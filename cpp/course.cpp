@@ -5,7 +5,6 @@
 #include "student.h"
 #include "person.h"
 #include "prof.h"
-#include <iostream>
 
 Course::Course()
 {
@@ -56,6 +55,7 @@ Course::Course(Prof *Profesor, Student *student, std::string Name, int Weight, b
     theorical = Theorical;
     professor = Profesor;
 
+    //Copy prof's courses and adding new one
     Course **tempCourse{new Course *[professor->n_classes + 1] {}};
     tempCourse[professor->n_classes] = this;
     for (int i{}; i < professor->n_classes; i++)
@@ -65,8 +65,10 @@ Course::Course(Prof *Profesor, Student *student, std::string Name, int Weight, b
     professor->courses = tempCourse;
     professor->n_classes++;
     population++;
+
     students = new Student *[1] { student };
 
+    //Copy student's courses and adding new one
     Course **auxCourse{new Course *[student->n_classes + 1] {}};
     auxCourse[student->n_classes] = this;
     for (int i = 0; i < student->n_classes; i++)
@@ -80,50 +82,56 @@ Course::Course(Prof *Profesor, Student *student, std::string Name, int Weight, b
 void Course::operator()(Student& newStudent,Theorical& newTheorical,int AR){
     if (AR == 1)
     {
+        //Copy students and adding new one
         Student **tempStudent{new Student *[population + 1] {}};
         tempStudent[population] = &newStudent;
-        for (int i = 0; i < population; i++)
+        for (int i{}; i < population; i++)
         {
             tempStudent[i] = students[i];
         }
         students = tempStudent;
 
+        //copy ER's and adding new one 
         ER **tempER{new ER *[population + 1] {}};
         tempER[population] = &newTheorical;
-        for (int i = 0; i < population; i++)
+        for (int i{}; i < population; i++)
         {
             tempER[i] = educational_reports[i];
         }
         educational_reports = tempER;
         population++;
 
-        Course **tempCourse{new Course *[newStudent.n_classes + 1] {}};
-        tempCourse[newStudent.n_classes] = this;
-        for (int i = 0; i < newStudent.n_classes; i++)
-        {
-            tempCourse[i] = newStudent.courses[i];
-        }
-        newStudent.courses = tempCourse;
-        newStudent.n_classes++;
-
+        //copy theoricals and adding new one
         Theorical **tempTheorical{new Theorical *[newStudent.n_theo + 1] {}};
         tempTheorical[newStudent.n_theo] = &newTheorical;
-        for (int i = 0; i < newStudent.n_theo; i++)
+        for (int i{}; i < newStudent.n_theo; i++)
         {
             tempTheorical[i] = newStudent.theoric_er[i];
         }
         newStudent.theoric_er = tempTheorical;
         newStudent.n_theo++;
-
-        newTheorical.weight = weight;
+        
         newTheorical.course = this;
+        newTheorical.weight = weight;
         newTheorical.professor = professor;
         newTheorical.student = &newStudent;
+
+        
+        //copy courses and adding new one 
+        Course **tempCourse{new Course *[newStudent.n_classes + 1] {}};
+        tempCourse[newStudent.n_classes] = this;
+        for (int i{}; i < newStudent.n_classes; i++)
+        {
+            tempCourse[i] = newStudent.courses[i];
+        }
+        newStudent.courses = tempCourse;
+        newStudent.n_classes++;
     }
     else
     {
+        //copy students and removign the specific one
         Student **tempStudent{new Student *[this->population - 1] {}};
-        for (int i = 0, j = 0; i < this->population; i++)
+        for (int i{}, j{}; i < this->population; i++)
         {
             if (newStudent.id != this->students[i]->id)
             {
@@ -132,11 +140,10 @@ void Course::operator()(Student& newStudent,Theorical& newTheorical,int AR){
             }
         }
         this->students = tempStudent;
-        newTheorical.final = 0;
-        newTheorical.passed = false;
 
+        //copy Er's and removign the specefic one ( theorical will be removed automaticaly)
         ER **tempER{new ER *[this->population - 1] {}};
-        for (int i = 0, j = 0; i < this->population; i++)
+        for (int i{}, j{}; i < this->population; i++)
         {
             if (&newTheorical != this->educational_reports[i])
             {
@@ -147,8 +154,9 @@ void Course::operator()(Student& newStudent,Theorical& newTheorical,int AR){
         this->educational_reports = tempER;
         this->population--;
 
+        //copy courses and removing the specific one
         Course **tempCourse{new Course *[newStudent.n_classes - 1] {}};
-        for (int i = 0, j = 0; i < newStudent.n_classes; i++)
+        for (int i{}, j{}; i < newStudent.n_classes; i++)
         {
             if (this != newStudent.courses[i])
             {
@@ -165,6 +173,7 @@ void Course::operator()(Student &newStudent, Lab &newLab, int AR)
 {
     if (AR == 1)
     {
+        //copy students and adding new one
         Student **tempStudent{new Student *[this->population + 1] {}};
         tempStudent[population] = &newStudent;
         for (int i{}; i < population; i++)
@@ -173,6 +182,7 @@ void Course::operator()(Student &newStudent, Lab &newLab, int AR)
         }
         students = tempStudent;
 
+        //copy ER's and adding new one
         ER **tempER{new ER *[population + 1] {}};
         tempER[population] = &newLab;
         for (int i{}; i < population; i++)
@@ -182,16 +192,7 @@ void Course::operator()(Student &newStudent, Lab &newLab, int AR)
         educational_reports = tempER;
         population++;
 
-        Course **tempCourse{new Course *[newStudent.n_classes + 1] {}};
-        tempCourse[newStudent.n_classes] = this;
-        for (int i{}; i < newStudent.n_classes; i++)
-        {
-            tempCourse[i] = newStudent.courses[i];
-        }
-        newStudent.courses = tempCourse;
-        newStudent.n_classes++;
-        delete tempCourse;
-
+        //copy labs and adding new one 
         Lab **tempLab{new Lab *[newStudent.n_lab + 1] {}};
         tempLab[newStudent.n_lab] = &newLab;
         for (int i{}; i < newStudent.n_lab; i++)
@@ -202,13 +203,25 @@ void Course::operator()(Student &newStudent, Lab &newLab, int AR)
         newStudent.n_lab++;
         delete tempLab;
 
-        newLab.weight = this->weight;
         newLab.course = this;
+        newLab.weight = this->weight;
         newLab.professor = this->professor;
         newLab.student = &newStudent;
+
+        //copy courses and adding new one
+        Course **tempCourse{new Course *[newStudent.n_classes + 1] {}};
+        tempCourse[newStudent.n_classes] = this;
+        for (int i{}; i < newStudent.n_classes; i++)
+        {
+            tempCourse[i] = newStudent.courses[i];
+        }
+        newStudent.courses = tempCourse;
+        newStudent.n_classes++;
+        delete tempCourse;
     }
     else
     {
+        //copy students and removing the specific one
         Student **tempStudent{new Student *[population - 1] {}};
         for (int i{}, j{}; i < population; i++)
         {
@@ -219,9 +232,8 @@ void Course::operator()(Student &newStudent, Lab &newLab, int AR)
             }
         }
         students = tempStudent;
-        newLab.final = 0;
-        newLab.passed = false;
 
+        //copy ER's and removing the specific one ( lab will be removed automatically )
         ER **tempER{new ER *[population - 1] {}};
         for (int i{}, j{}; i < population; i++)
         {
@@ -234,6 +246,7 @@ void Course::operator()(Student &newStudent, Lab &newLab, int AR)
         educational_reports = tempER;
         population--;
 
+        //copy courses and removing the specific one
         Course **tempCourse{new Course *[newStudent.n_classes - 1] {}};
         for (int  i{}, j{}; i < newStudent.n_classes; i++)
         {
