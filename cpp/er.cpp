@@ -4,10 +4,7 @@ ER::ER(){
     course = nullptr;
     professor = nullptr;
     student = nullptr;
-}
-
-ER::~ER(){
-
+    weight = 0;
 }
 
 float ER::calculate_final()

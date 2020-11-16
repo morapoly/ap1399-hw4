@@ -1,5 +1,5 @@
 #include "person.h"
-//#include "course.h"
+#include <iostream>
 
 Person::Person(){
     courses = nullptr;
@@ -7,7 +7,7 @@ Person::Person(){
 }
 
 Person::~Person(){
-
+    delete courses;
 }
 
 float Person::get_mean(){

@@ -5,10 +5,6 @@ Prof::Prof() : Person() {
 
 }
 
-Prof::~Prof(){
-    this->~Person();
-}
-
 Prof::Prof(std::string firstName,std::string lastName,int Id) : Person(){
     first_name = firstName;
     last_name = lastName;

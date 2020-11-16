@@ -9,7 +9,7 @@ class ER
 {
     public:
     ER();
-    ~ER();
+    ~ER() = default;
     virtual float calculate_final();  // function which calculate final score
     virtual void scoring(float,float,float,int);  // function which score parameters
     Course* course;   

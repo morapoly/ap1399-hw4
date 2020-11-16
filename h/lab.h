@@ -11,10 +11,10 @@ class Lab : public ER
 {
     public:
     Lab();
-    ~Lab();
+    ~Lab() = default;
     Lab(Course*,Student*,Prof*,int wight);
-    float calculate_final();  // 10 points for final exam,8 points for report,2 points for activies
-    void scoring(float report,float activities,float final_exam,int absences);
+    float calculate_final() override;  // 10 points for final exam,8 points for report,2 points for activies
+    void scoring(float report,float activities,float final_exam,int absences) override;
     float report;  // score of student's lab reports
     float activities;   // score of student's activities in class
     float final_exam;

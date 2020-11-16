@@ -15,7 +15,7 @@ class Student : public Person
     public:
     Student();
     Student(std::string first_name,std::string last_name,int id,float mean_score,int passed);
-    ~Student();
+    ~Student() = default;
     float get_mean() override;  // It returns student's mean score
     void operator++();  // It adds a unit to student's semestes
     bool operator!=(const Student&);

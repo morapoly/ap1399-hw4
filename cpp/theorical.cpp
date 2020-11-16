@@ -5,11 +5,9 @@
 #include "prof.h"
 
 Theorical::Theorical() : ER(){
-
-}
-
-Theorical::~Theorical(){
-    this->~ER();
+    mid_term = 0;
+    final_exam = 0;
+    homeWorks = 0;
 }
 
 Theorical::Theorical(Course *Course, Student *Student, Prof *Professor, int Weight) : ER()
@@ -19,7 +17,6 @@ Theorical::Theorical(Course *Course, Student *Student, Prof *Professor, int Weig
     student = Student;
     weight = Weight;
 }
-
 
 void Theorical::scoring(float midTerm,float finalExam,float HomeWorks,int Absences) {
     mid_term = midTerm;

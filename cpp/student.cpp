@@ -7,11 +7,6 @@ Student::Student() : Person(){
     n_lab = 0;
 }
 
-Student::~Student()
-{
-    this->~Person();
-}
-
 Student::Student(std::string firstName,std::string lastName,int Id,float meanScore,int Passed) : Person(){
     first_name = firstName;
     last_name = lastName;

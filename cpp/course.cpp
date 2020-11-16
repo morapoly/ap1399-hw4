@@ -5,6 +5,7 @@
 #include "student.h"
 #include "person.h"
 #include "prof.h"
+#include <iostream>
 
 Course::Course()
 {
@@ -15,8 +16,8 @@ Course::Course()
 
 Course::~Course()
 {
-    delete[] students;
-    delete[] educational_reports;
+    delete students;
+    delete educational_reports;
 }
 
 Course::Course(std::string Name, int Weight, bool Theorical)
