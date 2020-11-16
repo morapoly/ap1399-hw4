@@ -15,7 +15,7 @@ class ER
     Course* course;   
     Prof* professor;
     Student* student;  
-    float final{};    
+    float final{};        // final changed to Final !!!!
     bool passed{false};   // student passed the course?
     int weight;           // weight of course
     int absences{};       // number of student's absences

@@ -12,7 +12,7 @@
 #include "gtest/gtest.h"
 namespace
 {
-/*
+
 TEST(APHW4Test,InitiAmirzing0)
 {
     Prof prof1("Amir","Jahanshahi",1);
@@ -168,5 +168,5 @@ TEST(APHW4Test,get_mean6)
   p1 = &s1;
   EXPECT_EQ(18,p1->get_mean());
 }
-*/
+
 }
